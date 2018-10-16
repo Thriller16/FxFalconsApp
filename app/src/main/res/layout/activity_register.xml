@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/bottomcolor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.falconforex.com.falconforex.RegisterActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/go_on"
+            android:layout_height="wrap_content"
+            android:text="FxFalcons"
+            android:textColor="#fff"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#fff"
+            android:id="@+id/signUpText"
+            android:layout_marginTop="30dp"
+            android:text="Sign up with your email to join FxFalcons"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel"
+            android:layout_marginTop="20dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:textColor="#fff"
+                android:layout_height="wrap_content"
+                android:hint="E-mail"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/nameslayout"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/firstNameReg"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel"
+                android:layout_marginTop="30dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="FIRST NAME"
+                    android:textSize="16dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lastNameReg"
+                android:layout_weight="1"
+                android:theme="@style/TextLabel"
+                android:layout_marginTop="30dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:textSize="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="LAST NAME"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:id="@+id/passwordReg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel"
+            android:layout_marginTop="30dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_marginLeft="16dp"
+                android:inputType="textPassword"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:drawableRight="@drawable/ic_visibility_black_24dp"
+                android:layout_height="wrap_content"
+                android:hint="PASSWORD"
+                android:textSize="16dp"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <CheckBox
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="16dp"
+            android:visibility="gone"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:layout_width="wrap_content"
+            android:id="@+id/agreeCheck"
+            android:layout_height="wrap_content"
+            android:text="By signing up, I agree to FxFalcons terms of service and privacy policy" />
+
+        <Button
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:id="@+id/getStartedBtn"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:text="GET started"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+
+</ScrollView>

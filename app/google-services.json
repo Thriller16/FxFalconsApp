@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "335398699131",
+    "firebase_url": "https://falconforex-c3e32.firebaseio.com",
+    "project_id": "falconforex-c3e32",
+    "storage_bucket": "falconforex-c3e32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335398699131:android:0734f8bfdf1ce6d9",
+        "android_client_info": {
+          "package_name": "app.falconforex.com.falconforex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335398699131-5b988le5hhne1kebloe9tgoirbjkhtqe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.falconforex.com.falconforex",
+            "certificate_hash": "c8d53b006aead54d5b9030398cb9ab0823d00df3"
+          }
+        },
+        {
+          "client_id": "335398699131-k1sntbes5i35u5ss75i895ujr1f78dfs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI7zpjxQid9zmYtEKRxvI6f57MqFQTI68"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335398699131-k1sntbes5i35u5ss75i895ujr1f78dfs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

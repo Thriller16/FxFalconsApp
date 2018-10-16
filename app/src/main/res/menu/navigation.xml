@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:id="@+id/dashboard"/>
+
+    <item
+        android:id="@+id/news"
+        android:icon="@drawable/ic_live_tv_black_24dp"
+        android:title="News"></item>
+
+    <item
+        android:title="Transactions"
+        android:icon="@drawable/ic_assessment_black_24dp"
+        android:id="@+id/transactions"/>
+
+    <item
+        android:title="My Account"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:id="@+id/myaccount"/>
+
+</menu>
