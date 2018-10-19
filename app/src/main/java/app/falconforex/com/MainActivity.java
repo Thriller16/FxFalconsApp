@@ -1,7 +1,10 @@
-package app.falconforex.com.falconforex;
+package app.falconforex.com;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,18 +15,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+
+import app.falconforex.com.falconforex.R;
 
 public class MainActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
     NavigationView navigationView;
     BottomNavigationViewEx bottomNavigationView;
+    FirebaseAuth mFireAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mFireAuth = FirebaseAuth.getInstance();
+
+
 
         mToolbar = findViewById(R.id.main_toolbar);
         mToolbar = findViewById(R.id.main_toolbar);
@@ -46,11 +61,14 @@ public class MainActivity extends AppCompatActivity {
 //        fragmentTransaction.replace(R.id.holder_layout, new HomeFragment());
 //        fragmentTransaction.commit();
 
+        loadFragment(new DashboardFragment());
+
+
         navigationView = (NavigationView) findViewById(R.id.navView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch(item.getItemId()){
+                switch(item.getItemId()){
 //                    case R.id.home:
 //                        getSupportActionBar().setTitle("School Planner");
 //                        FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
@@ -102,13 +120,45 @@ public class MainActivity extends AppCompatActivity {
 //                        fragmentTransaction6.commit();
 //                        break;
 //
-//                    case R.id.logout_nav:
-//                        mFireAuth.signOut();
-//                        startActivity(new Intent(MainActivity.this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-//                }
+                    case R.id.logout_nav:
+                        mFireAuth.signOut();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                }
+
                 DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
+            }
+        });
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment;
+
+                switch (menuItem.getItemId()) {
+                    case R.id.dashboard:
+                        fragment = new DashboardFragment();
+                        loadFragment(fragment);
+                        return true;
+
+                    case R.id.news:
+                        fragment = new NewsFragment();
+                        loadFragment(fragment);
+                        return true;
+
+                    case R.id.transactions:
+                        fragment = new TransactionsFragment();
+                        loadFragment(fragment);
+                        return true;
+
+                    case R.id.myaccount:
+                        fragment = new ProfileFragment();
+                        loadFragment(fragment);
+                        return true;
+
+                }
+                return false;
             }
         });
 
@@ -118,5 +168,29 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.app_main_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mFireAuth.getCurrentUser();
+        if(currentUser == null){
+            sendToStart();
+        }
+    }
+
+    private void sendToStart() {
+        Intent startIntent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(startIntent);
+        finish();
+    }
+
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

@@ -32,7 +32,7 @@
             android:title="Settings"></item>
 
         <item
-            android:id="@+id/logout"
+            android:id="@+id/logout_nav"
             android:icon="@drawable/ic_logout1"
             android:title="Log Out"></item>
     </group>

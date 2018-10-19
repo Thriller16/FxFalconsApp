@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bottomcolor"
-    tools:context=".LoginActivity">
+    tools:context="app.falconforex.com.LoginActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -18,14 +18,14 @@
         <ImageView
             android:layout_marginTop="0dp"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="50dp"
             />
 
         <TextView
             android:textStyle="bold"
             android:textSize="35sp"
             android:textColor="#fff"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
             android:text="FxFalcons"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_margin="30dp"
+        android:layout_margin="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -116,7 +116,7 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:gravity="center"
-            android:text="Invest only you can afford to loose"
+            android:text="Invest only what you can afford to loose"
             android:textColor="#fff"/>
 
 

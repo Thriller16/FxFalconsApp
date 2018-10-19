@@ -39,7 +39,7 @@
                 app:itemBackground="@color/bottomcolor"
                 app:itemIconTint="#f5f4f4"
                 app:itemTextColor="#f5f4f4"
-                app:menu="@menu/navigation" />
+                app:menu="@menu/bottom_navigation_menu" />
 
         </RelativeLayout>
     </LinearLayout>
