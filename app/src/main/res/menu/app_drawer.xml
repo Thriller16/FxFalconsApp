@@ -7,9 +7,9 @@
             android:title="Home"></item>
 
         <item
-            android:id="@+id/referals"
-            android:icon="@drawable/ic_people_outline_black_24dp"
-            android:title="My Referrals"></item>
+            android:id="@+id/myaccount"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="My Account"></item>
 
         <item
             android:id="@+id/mycourses"

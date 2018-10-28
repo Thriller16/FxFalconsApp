@@ -1,4 +1,4 @@
-package app.falconforex.com.falconforex;
+package app.fxfalcons.com.falconforex;
 
 import org.junit.Test;
 

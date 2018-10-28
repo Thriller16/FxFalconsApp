@@ -7,18 +7,20 @@
         android:id="@+id/dashboard"/>
 
     <item
-        android:id="@+id/news"
+        android:id="@+id/courses"
         android:icon="@drawable/ic_live_tv_black_24dp"
-        android:title="News"></item>
+        android:title="Courses"></item>
+
+
+    <item
+        android:title="Refferals"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:id="@+id/refferals"/>
 
     <item
         android:title="Transactions"
         android:icon="@drawable/ic_assessment_black_24dp"
         android:id="@+id/transactions"/>
 
-    <item
-        android:title="My Account"
-        android:icon="@drawable/ic_person_black_24dp"
-        android:id="@+id/myaccount"/>
 
 </menu>

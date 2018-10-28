@@ -1,4 +1,4 @@
-package app.falconforex.com.falconforex;
+package app.fxfalcons.com.falconforex;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

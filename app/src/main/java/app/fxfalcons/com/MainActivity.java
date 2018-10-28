@@ -1,9 +1,10 @@
-package app.falconforex.com;
+package app.fxfalcons.com;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -14,14 +15,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-import app.falconforex.com.falconforex.R;
+import app.fxfalcons.com.falconforex.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     BottomNavigationViewEx bottomNavigationView;
     FirebaseAuth mFireAuth;
-
+    Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         mFireAuth = FirebaseAuth.getInstance();
 
 
-
-        mToolbar = findViewById(R.id.main_toolbar);
         mToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("FxFalcons");
@@ -56,33 +53,31 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        //This is to load the home fragment at the beginning of the process beggining process
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.replace(R.id.holder_layout, new HomeFragment());
-//        fragmentTransaction.commit();
-
         loadFragment(new DashboardFragment());
-
+        checkVerification();
 
         navigationView = (NavigationView) findViewById(R.id.navView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            Fragment fragment;
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
-//                    case R.id.home:
-//                        getSupportActionBar().setTitle("School Planner");
-//                        FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
-//                        fragmentTransaction1.replace(R.id.holder_layout, new HomeFragment());
-//                        fragmentTransaction1.commit();
-//                        break;
-//
-//                    case R.id.calender:
-//                        getSupportActionBar().setTitle("Calender");
-//                        FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-//                        fragmentTransaction2.replace(R.id.holder_layout, new CalenderFragment());
-//                        fragmentTransaction2.commit();
-//                        break;
-//
+                switch (item.getItemId()) {
+
+                    case R.id.home:
+                        getSupportActionBar().setTitle("FxFalcons");
+                        fragment = new DashboardFragment();
+                        loadFragment(fragment);
+                        checkVerification();
+                        break;
+
+                    case R.id.myaccount:
+                        getSupportActionBar().setTitle("My Account");
+                        fragment = new MyAccountFragment();
+                        loadFragment(fragment);
+                        checkVerification();
+                        break;
+
 //                    case R.id.tasks:
 //                        getSupportActionBar().setTitle("Tasks");
 //                        FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
@@ -140,21 +135,26 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.dashboard:
                         fragment = new DashboardFragment();
                         loadFragment(fragment);
+                        checkVerification();
                         return true;
 
-                    case R.id.news:
-                        fragment = new NewsFragment();
+                    case R.id.courses:
+                        fragment = new CoursesFragment();
                         loadFragment(fragment);
+                        checkVerification();
+                        return true;
+
+
+                    case R.id.refferals:
+                        fragment = new ReferralsFragment();
+                        loadFragment(fragment);
+                        checkVerification();
                         return true;
 
                     case R.id.transactions:
                         fragment = new TransactionsFragment();
                         loadFragment(fragment);
-                        return true;
-
-                    case R.id.myaccount:
-                        fragment = new ProfileFragment();
-                        loadFragment(fragment);
+                        checkVerification();
                         return true;
 
                 }
@@ -173,11 +173,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        FirebaseUser currentUser = mFireAuth.getCurrentUser();
-        if(currentUser == null){
-            sendToStart();
-        }
+//
+//        FirebaseUser currentUser = mFireAuth.getCurrentUser();
+//        if (currentUser == null) {
+////            sendToStart();
+//        }
     }
 
     private void sendToStart() {
@@ -192,5 +192,24 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void checkVerification() {
+        if (mFireAuth.getCurrentUser().isEmailVerified()) {
+        } else {
+            snackbar = Snackbar.make(bottomNavigationView, "Please verify your email address and sign in again to enjoy our services", Snackbar.LENGTH_LONG).setAction("Ok", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    snackbar.dismiss();
+                }
+            });
+            snackbar.setActionTextColor(getResources().getColor(R.color.bgcolor));
+            snackbar.show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

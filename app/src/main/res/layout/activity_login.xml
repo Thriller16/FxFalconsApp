@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bottomcolor"
-    tools:context="app.falconforex.com.LoginActivity">
+    tools:context="app.fxfalcons.com.LoginActivity">
 
     <LinearLayout
         android:orientation="vertical"

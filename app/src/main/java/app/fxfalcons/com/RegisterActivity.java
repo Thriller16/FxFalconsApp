@@ -1,4 +1,4 @@
-package app.falconforex.com;
+package app.fxfalcons.com;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Random;
 
-import app.falconforex.com.falconforex.R;
+import app.fxfalcons.com.falconforex.R;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -46,8 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         mFireAuth = FirebaseAuth.getInstance();
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Members");
-
-
 
         mProgressDialog = new ProgressDialog(this, R.style.myAlertDialogStyle);
         setUpViews();
@@ -85,15 +83,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void registerUser(String email, String password, String firstname, String lastname) {
 
-        String country = getApplicationContext().getResources().getConfiguration().locale.getDisplayCountry();
-
         final HashMap<Object, String> userMap = new HashMap<>();
         userMap.put("firstname", firstname);
         userMap.put("lastname", lastname);
         userMap.put("walletId", generateWalletId());
         userMap.put("walletbalance", "0.00");
         userMap.put("phonenumber", "");
-        userMap.put("country", country);
+        userMap.put("country", "unknown");
         userMap.put("isVerified", "no");
         userMap.put("accountname", firstname + " " + lastname);
         userMap.put("bankname", "none");
@@ -117,12 +113,10 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
 
                     mCurrentUser = mFireAuth.getCurrentUser();
-
                     mUserDatabase.child(mCurrentUser.getUid()).setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-
 
                                 mFireAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -137,8 +131,6 @@ public class RegisterActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
-
-
                             }
                         }
                     });
