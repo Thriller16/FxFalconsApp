@@ -129,22 +129,17 @@ public class FundWalletActivity extends AppCompatActivity {
 
 
                         else if(Integer.parseInt(fundAmountEdt.getText().toString()) >= 30){
-                            Toast.makeText(FundWalletActivity.this, "Proceed" + nairaValue + dollarValue, Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(FundWalletActivity.this, CardDetailsActivity.class).
                                     putExtra("nairaValue", nairaValue).
                                     putExtra("dollarValue", dollarValue));
                         }
-
                     }
-
-
                 }
 
                 else{
 
                     if(fundAmountEdt.getText().toString().equals("") || fundAmountEdt.getText().toString().equals("0")){
                         Toast.makeText(FundWalletActivity.this, "Invalid fund amount", Toast.LENGTH_SHORT).show();
-
                     }
 
                     else{
